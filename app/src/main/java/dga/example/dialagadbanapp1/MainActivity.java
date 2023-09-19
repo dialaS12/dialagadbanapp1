@@ -16,19 +16,7 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, "on create", Toast.LENGTH_SHORT).show();
 
     }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        Log.d("fi","on Restart");
-        Toast.makeText(this, "onRestart", Toast.LENGTH_SHORT).show();
-
-
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
+onResume();
         Log.d("fi","onResume");
         Toast.makeText(this, "onResume", Toast.LENGTH_SHORT).show();
 
