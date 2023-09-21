@@ -6,6 +6,7 @@ import  androidx.room.Entity;
 /**فئه تمثل مهمه
  *
  */
+@Entity
 public class MyTask
 {
     /**
@@ -31,6 +32,8 @@ public class MyTask
     public long userId;
     /** زمن بناء المهمه*/
     public long time ;
+    /** هل تمت المهمه؟*/
+    public boolean isCompleted;
 
     @Override
     public String toString() {
@@ -41,6 +44,7 @@ public class MyTask
                 ", subjId=" + subjId +
                 ", userId=" + userId +
                 ", time=" + time +
+                ", isCompleted=" + isCompleted +
                 '}';
     }
 }

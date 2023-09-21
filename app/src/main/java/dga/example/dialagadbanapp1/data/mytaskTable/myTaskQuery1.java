@@ -7,42 +7,63 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import java.util.List;
-
+@Dao
 public interface myTaskQuery1
 {
     /**
-     *واجهه استعلامات
+     *      *اعادة جميع معطيات جدول المهمات
+     * @return * قائمة من المهمات
      */
-    @Dao
-    public interface MyUserQuery {
-        @Query("SELECT * FROM MyUser")
+    @Query("SELECT * FROM  MyTask")
         List<MyTask> getAllTasks();
+
+    /**
+     * -مرتبه حسب الوقت- استخراج المهمات حسب المستعمل
+     * @param useri_p
+     * @return
+     */
+    @Query("SELECT * FROM  MyTask WHERE userId=:useri_p ORDER BY time DESC")
+    List<MyTask> getAllTaskOrderBy(Long useri_p);
+
+    /**
+     * استخراج جميع المهمات حسب المستعمل-وهل تمت ام لا ؟ -مرتبه حسب الاهميه
+     * @param useri_p* رقم المستعمل
+     * @param iscomplte_p* هل تمت ام لا
+     * @return
+     */
+    @Query("SELECT * FROM  MyTask WHERE userId=:useri_p AND isCompleted=:iscomplte_p ORDER BY importance DESC")
+    List<MyTask> getAllTaskOrderBy(Long useri_p ,boolean iscomplte_p);
+    /**
+     * ادخال مهمات
+     * @param t*مجموعة مهمات
+     */
         @Insert
         /**
          * ثلاثه نقاط تعني ادخال مجموعه
-         */
+          */
         void insertAll(MyTask... t);
 
-        @Query("SELECT * FROM MyUser WHERE keyid IN (:userIds)")
-        List<MyTask> loadAllByIds(int[] userIds);
+    /**
+     * *تعديل المهمات
+     * @param task *مجموعه مهمات للتعديل ىحسب المفتاح الرئيسي
+     */
+    @Update
+    void update(MyTask...task);
 
-        @Query("SELECT * FROM MyUser WHERE email = :myEmail AND " +
-                "passw = :myPassw LIMIT 1")
-        MyTask checkEmailPassw(String myEmail, String myPassw);
-
-
-
-        @Delete
-        void delete(MyTask Task);
-
-        @Query("Delete From MyTask WHERE keyid=:id ")
-        void delete(int id);
-
-        @Insert
-        void insert(MyTask myUser);
-        @Update
-        void update(MyTask...values);
-    }
+    /**
+     * حذف مهمات او مهمه
+     * @param tasks
+     */
+   @Delete
+   void deleteTask(MyTask...tasks);
+   @Query("DELETE FROM MYTASK WHERE keyid=:id")
+   void deletelTask(Long id);
 
 
-}
+
+
+
+
+
+
+
