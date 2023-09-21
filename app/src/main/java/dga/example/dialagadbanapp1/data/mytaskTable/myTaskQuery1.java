@@ -8,17 +8,18 @@ import androidx.room.Update;
 
 import java.util.List;
 @Dao
-public interface myTaskQuery1
-{
+public interface myTaskQuery1 {
     /**
-     *      *اعادة جميع معطيات جدول المهمات
+     * *اعادة جميع معطيات جدول المهمات
+     *
      * @return * قائمة من المهمات
      */
     @Query("SELECT * FROM  MyTask")
-        List<MyTask> getAllTasks();
+    List<MyTask> getAllTasks();
 
     /**
      * -مرتبه حسب الوقت- استخراج المهمات حسب المستعمل
+     *
      * @param useri_p
      * @return
      */
@@ -27,37 +28,44 @@ public interface myTaskQuery1
 
     /**
      * استخراج جميع المهمات حسب المستعمل-وهل تمت ام لا ؟ -مرتبه حسب الاهميه
-     * @param useri_p* رقم المستعمل
+     *
+     * @param useri_p*     رقم المستعمل
      * @param iscomplte_p* هل تمت ام لا
      * @return
      */
     @Query("SELECT * FROM  MyTask WHERE userId=:useri_p AND isCompleted=:iscomplte_p ORDER BY importance DESC")
-    List<MyTask> getAllTaskOrderBy(Long useri_p ,boolean iscomplte_p);
+    List<MyTask> getAllTaskOrderBy(Long useri_p, boolean iscomplte_p);
+
     /**
      * ادخال مهمات
+     *
      * @param t*مجموعة مهمات
      */
-        @Insert
-        /**
-         * ثلاثه نقاط تعني ادخال مجموعه
-          */
-        void insertAll(MyTask... t);
+    @Insert
+    /**
+     * ثلاثه نقاط تعني ادخال مجموعه
+     */
+    void insertAll(MyTask... t);
 
     /**
      * *تعديل المهمات
+     *
      * @param task *مجموعه مهمات للتعديل ىحسب المفتاح الرئيسي
      */
     @Update
-    void update(MyTask...task);
+    void update(MyTask... task);
 
     /**
      * حذف مهمات او مهمه
+     *
      * @param tasks
      */
-   @Delete
-   void deleteTask(MyTask...tasks);
-   @Query("DELETE FROM MYTASK WHERE keyid=:id")
-   void deletelTask(Long id);
+    @Delete
+    void deleteTask(MyTask... tasks);
+
+    @Query("DELETE FROM MYTASK WHERE keyid=:id")
+    void deletelTask(Long id);
+}
 
 
 
