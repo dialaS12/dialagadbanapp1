@@ -28,20 +28,21 @@
             android:layout_height="match_parent">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="password" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/button5"
+            android:id="@+id/btnSingin"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:backgroundTint="#009688"
             android:text="SIGN IN" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/btnSingup"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:backgroundTint="#009688"
