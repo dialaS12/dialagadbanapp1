@@ -6,6 +6,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import dga.example.dialagadbanapp1.data.AppDatabase;
+import dga.example.dialagadbanapp1.data.subjectTable.MySubject;
+import dga.example.dialagadbanapp1.data.subjectTable.MySubjectQuery1;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -14,9 +18,24 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Log.d("fi","on create");
         Toast.makeText(this, "on create", Toast.LENGTH_SHORT).show();
+        //1 - بناء قاعدة بيانات وارجاع موشر عبليها
+        AppDatabase db =AppDatabase.getDB(getApplicationContext());
+        //2 - مؤشر لكائن عمليات الجدول
+        MySubjectQuery1 subjectQuery = db.getMySubjectQuery();
+        // 3- بناء كائن من نوع جدول وتحديد قيم الصفات
+        MySubject s1=new MySubject();
+        s1.title="computer";
+        MySubject s2=new MySubject();
+        s2.title="math";
+        //4- اضافة كائن للجدول.
+        subjectQuery.insert(s1);
+        subjectQuery.insert(s2);
 
     }
-onResume();
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
         Log.d("fi","onResume");
         Toast.makeText(this, "onResume", Toast.LENGTH_SHORT).show();
 
