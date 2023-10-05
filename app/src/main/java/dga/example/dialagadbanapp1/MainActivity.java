@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.util.List;
+
 import dga.example.dialagadbanapp1.data.AppDatabase;
 import dga.example.dialagadbanapp1.data.subjectTable.MySubject;
 import dga.example.dialagadbanapp1.data.subjectTable.MySubjectQuery1;
@@ -22,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         AppDatabase db =AppDatabase.getDB(getApplicationContext());
         //2 - مؤشر لكائن عمليات الجدول
         MySubjectQuery1 subjectQuery = db.getMySubjectQuery();
+        // مثال لاستعمال جدول البيانات
         // 3- بناء كائن من نوع جدول وتحديد قيم الصفات
         MySubject s1=new MySubject();
         s1.title="computer";
@@ -30,6 +33,17 @@ public class MainActivity extends AppCompatActivity {
         //4- اضافة كائن للجدول.
         subjectQuery.insert(s1);
         subjectQuery.insert(s2);
+        //فحص هل تم حفظ ما سبق -5
+        // استخراج وطباعة جميع معطيات جدول المواضيع
+        List<MySubject> all = subjectQuery.getAll();
+        for (MySubject s:all)
+              {
+                  Log.d("SM",s.title);
+                  Toast.makeText(this,s.title,Toast.LENGTH_LONG);
+
+        }
+
+
 
     }
     @Override

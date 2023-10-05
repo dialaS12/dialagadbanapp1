@@ -15,7 +15,7 @@ import java.util.List;
 public interface MySubjectQuery1 {
 
 
-    @Query("SELECT * FROM MyUser")
+    @Query("SELECT * FROM MySubject")
     List<MySubject> getAll();
     @Insert
     void insertAll(MySubject... users);
