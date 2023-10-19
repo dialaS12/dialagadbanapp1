@@ -7,7 +7,8 @@ import  androidx.room.Entity;
  *
  */
 @Entity
-public class MyTask
+public class
+MyTask
 {
     /**
      * رقم المهمه

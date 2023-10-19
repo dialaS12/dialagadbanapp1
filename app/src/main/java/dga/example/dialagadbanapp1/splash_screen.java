@@ -14,14 +14,14 @@ import dga.example.dialagadbanapp1.data.AppDatabase;
 import dga.example.dialagadbanapp1.data.subjectTable.MySubject;
 import dga.example.dialagadbanapp1.data.subjectTable.MySubjectQuery1;
 
-public class MainActivity extends AppCompatActivity
+public class splash_screen extends AppCompatActivity
 {
     //spnr1 تعريف صفه للكائن المرئي
     private Spinner spnrSubject;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.splash_screen);
         //spnr2 وضع مؤشر الصفه على الكائن المرئي الموجود بواجهه المستعمل
         spnrSubject=findViewById(R.id.spnrSubject);
         //spnr3 بناء الوسيط وتحديد واجهه تنسيق لمعطى واحد
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity
        spnrSubject.setAdapter(adapter);
 
 
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.splash_screen);
         Log.d("fi","on create");
         Toast.makeText(this, "on create", Toast.LENGTH_SHORT).show();
         //1 - بناء قاعدة بيانات وارجاع موشر عبليها
