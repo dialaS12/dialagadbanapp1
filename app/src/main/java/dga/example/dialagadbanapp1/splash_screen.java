@@ -2,7 +2,9 @@ package dga.example.dialagadbanapp1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -19,7 +21,8 @@ public class splash_screen extends AppCompatActivity
     //spnr1 تعريف صفه للكائن المرئي
     private Spinner spnrSubject;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_screen);
         //spnr2 وضع مؤشر الصفه على الكائن المرئي الموجود بواجهه المستعمل
@@ -60,10 +63,27 @@ public class splash_screen extends AppCompatActivity
                   Toast.makeText(this,s.title,Toast.LENGTH_LONG);
 
         }
-
-
-
+        Handler h=new Handler();
+        Runnable r=new Runnable() {
+            @Override
+            public void run()
+            {
+                //to open new activity from current to next
+                Intent i= new Intent(splash_screen.this, SignInMainActivity2.class);
+                startActivity(i);
+                //to close current activity
+                finish();
+            }
+        };
+        h.postDelayed(r,3000);
     }
+
+
+
+
+
+
+
     @Override
     protected void onResume()
     {

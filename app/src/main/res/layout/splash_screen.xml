@@ -17,14 +17,6 @@
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/task" />
 
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#009688"
-            android:text="NEXT
-" />
-
         <Spinner
             android:id="@+id/spnrSubject"
             android:layout_width="match_parent"
