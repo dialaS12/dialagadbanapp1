@@ -2,7 +2,9 @@ package dga.example.dialagadbanapp1;
 
 import  androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 
 import com.google.android.material.textfield.TextInputEditText;
@@ -28,5 +30,13 @@ public class SingUpActivity extends AppCompatActivity
         etName= (TextInputEditText) findViewById(R.id.etName);
         etPhone= (TextInputEditText) findViewById(R.id.etPhone);
         btnSave= (Button) findViewById(R.id.btnSave);
+    }
+    public void onClickMain(View v)
+    {
+        //to open new activity from current to next
+        Intent i= new Intent(SingUpActivity.this,MainActivity3.class);
+        startActivity(i);
+        //to close current activity
+        finish();
     }
 }

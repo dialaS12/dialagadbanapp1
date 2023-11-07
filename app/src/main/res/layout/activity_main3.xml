@@ -29,7 +29,8 @@
         <Spinner
             android:id="@+id/spnrSubject"
             android:layout_width="match_parent"
-            android:layout_height="50dp" />
+            android:layout_height="50dp"
+            android:spinnerMode="dropdown" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/istvTasks"
