@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -38,4 +39,33 @@ public class SignInMainActivity2 extends AppCompatActivity {
         //to close current activity
        finish();
     }
+    public void checkEmailPassw()
+    {
+        boolean isAllOk=true;
+        String email=etEmail.getText().toString();
+        String password=etpassword.getText().toString();
+        if (email.length()<6 ||email.contains("@")==false);
+        {
+            isAllOk=false;
+            etEmail.setError("Wrong Email");
+        }
+        if (password.length()<8||password.contains("")==true);
+        {
+            isAllOk=false;
+            etpassword.setError("Wrong Password");
+        }
+        if (isAllOk)
+        {
+            Toast.makeText(this,"All Ok",Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+
+
+
+
+
+
+
 }

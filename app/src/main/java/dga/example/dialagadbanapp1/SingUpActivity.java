@@ -6,11 +6,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 
-public class SingUpActivity extends AppCompatActivity
-{
+public class SingUpActivity extends AppCompatActivity {
     private TextInputEditText etEmail;
     private TextInputEditText etpassword;
     private TextInputEditText etRePassword;
@@ -19,24 +19,42 @@ public class SingUpActivity extends AppCompatActivity
     private Button btnSave;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sing_up);
-        etEmail= (TextInputEditText) findViewById(R.id.etEmail);
-        etpassword= (TextInputEditText) findViewById(R.id.etPassword);
-        etRePassword= (TextInputEditText) findViewById(R.id.etRePassword);
-        etName= (TextInputEditText) findViewById(R.id.etName);
-        etPhone= (TextInputEditText) findViewById(R.id.etPhone);
-        btnSave= (Button) findViewById(R.id.btnSave);
+        etEmail = (TextInputEditText) findViewById(R.id.etEmail);
+        etpassword = (TextInputEditText) findViewById(R.id.etPassword);
+        etRePassword = (TextInputEditText) findViewById(R.id.etRePassword);
+        etName = (TextInputEditText) findViewById(R.id.etName);
+        etPhone = (TextInputEditText) findViewById(R.id.etPhone);
+        btnSave = (Button) findViewById(R.id.btnSave);
     }
-    public void onClickMain(View v)
-    {
+
+    public void onClickMain(View v) {
         //to open new activity from current to next
-        Intent i= new Intent(SingUpActivity.this,MainActivity3.class);
+        Intent i = new Intent(SingUpActivity.this, MainActivity3.class);
         startActivity(i);
         //to close current activity
         finish();
+    }
+
+    public void checkEmailPassw() {
+        boolean isAllOk = true;
+        String email = etEmail.getText().toString();
+        String password = etpassword.getText().toString();
+        if (email.length() < 6 || email.contains("@") == false) ;
+        {
+            isAllOk = false;
+            etEmail.setError("Wrong Email");
+        }
+        if (password.length() < 8 || password.contains("") == true) ;
+        {
+            isAllOk = false;
+            etpassword.setError("Wrong Password");
+        }
+        if (isAllOk) {
+            Toast.makeText(this, "All Ok", Toast.LENGTH_SHORT).show();
+        }
     }
 }
