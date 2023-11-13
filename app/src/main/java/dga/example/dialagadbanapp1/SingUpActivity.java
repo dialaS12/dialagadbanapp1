@@ -39,22 +39,27 @@ public class SingUpActivity extends AppCompatActivity {
         finish();
     }
 
-    public void checkEmailPassw() {
-        boolean isAllOk = true;
-        String email = etEmail.getText().toString();
-        String password = etpassword.getText().toString();
-        if (email.length() < 6 || email.contains("@") == false) ;
+    public void onClickSingupcheck(View v) {
+        checkEmailPassw1();
+
+        public void checkEmailPassw1()
         {
-            isAllOk = false;
-            etEmail.setError("Wrong Email");
-        }
-        if (password.length() < 8 || password.contains("") == true) ;
-        {
-            isAllOk = false;
-            etpassword.setError("Wrong Password");
-        }
-        if (isAllOk) {
-            Toast.makeText(this, "All Ok", Toast.LENGTH_SHORT).show();
+            boolean isAllOk = true;
+            String email = etEmail.getText().toString();
+            String password = etpassword.getText().toString();
+            if (email.length() < 6 || email.contains("@") == false) ;
+            {
+                isAllOk = false;
+                etEmail.setError("Wrong Email");
+            }
+            if (password.length() < 8 || password.contains("") == true) ;
+            {
+                isAllOk = false;
+                etpassword.setError("Wrong Password");
+            }
+            if (isAllOk) {
+                Toast.makeText(this, "All Ok", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 }

@@ -39,6 +39,10 @@ public class SignInMainActivity2 extends AppCompatActivity {
         //to close current activity
        finish();
     }
+    public void onClickSingincheck(View v)
+    {
+        checkEmailPassw();
+    }
     public void checkEmailPassw()
     {
         boolean isAllOk=true;
