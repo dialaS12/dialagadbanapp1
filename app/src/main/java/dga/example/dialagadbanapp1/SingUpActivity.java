@@ -4,6 +4,7 @@ import  androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -36,6 +37,11 @@ public class SingUpActivity extends AppCompatActivity
         btnSave= (Button) findViewById(R.id.btnSave);
 
     }
+    public void onClickSave(View v)
+    {
+        checkEPRP();
+    }
+
     public void checkEPRP() {
         boolean isAllOk = true;
         String name=etName.getText().toString();
@@ -44,12 +50,12 @@ public class SingUpActivity extends AppCompatActivity
         String repassword = etRePassword.getText().toString();
         String phone=etPhone.getText().toString();
 
-        if (email.length() < 6 || email.contains("@") == false) ;
+        if (email.length() < 18 || email.contains("@") ==false) ;
         {
             isAllOk = false;
             etEmail.setError("Wrong Email");
         }
-        if (password.length() < 8 || password.contains("") == true)
+        if (password.length() < 9 || password.contains("") == true)
         {
             isAllOk = false;
             etpassword.setError("Wrong Password");
@@ -68,7 +74,7 @@ public class SingUpActivity extends AppCompatActivity
         if (isAllOk) {
             AppDatabase db=AppDatabase.getDB(getApplicationContext());
             MyUserQuery userQuery=db.getMyUserQuery();
-            if (userQuery.checkEmailPassw(email!=null))
+            if (userQuery.checkEmail(email)!=null)
             {
                 etEmail.setError("found email");
             }

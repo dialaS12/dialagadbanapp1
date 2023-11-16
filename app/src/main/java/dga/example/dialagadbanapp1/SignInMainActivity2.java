@@ -43,6 +43,10 @@ public class SignInMainActivity2 extends AppCompatActivity {
         //to close current activity
        finish();
     }
+    public void onClickSingin(View v)
+    {
+        checkEmailPassw();
+    }
 
     private  void checkEmailPassw()
     {
@@ -64,7 +68,7 @@ public class SignInMainActivity2 extends AppCompatActivity {
         {
             isALLOK = false;
             //عرض ملاحظة خطأ على الشاشة داخل حقل لمة المرور
-            etEmail.setError("Wrong Password");
+            etpassword.setError("Wrong Password");
         }
         if(isALLOK);
         {
