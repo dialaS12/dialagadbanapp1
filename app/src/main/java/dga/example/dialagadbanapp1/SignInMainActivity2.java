@@ -40,8 +40,6 @@ public class SignInMainActivity2 extends AppCompatActivity {
         //to open new activity from current to next
         Intent i= new Intent(SignInMainActivity2.this, SingUpActivity.class);
         startActivity(i);
-        //to close current activity
-       finish();
     }
     public void onClickSingin(View v)
     {
@@ -68,7 +66,11 @@ public class SignInMainActivity2 extends AppCompatActivity {
         {
             isALLOK = false;
             //عرض ملاحظة خطأ على الشاشة داخل حقل لمة المرور
+
             etpassword.setError("Wrong Password");
+
+            etEmail.setError("Wrong Password");
+
         }
         if(isALLOK);
         {

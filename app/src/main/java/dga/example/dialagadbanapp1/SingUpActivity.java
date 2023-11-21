@@ -50,16 +50,18 @@ public class SingUpActivity extends AppCompatActivity
         String repassword = etRePassword.getText().toString();
         String phone=etPhone.getText().toString();
 
-        if (email.length() < 18 || email.contains("@") ==false) ;
+
+        if (email.length() < 6 || email.contains("@") == false) ;
         {
             isAllOk = false;
             etEmail.setError("Wrong Email");
         }
-        if (password.length() < 9 || password.contains("") == true)
+        if (password.length() < 8 || password.contains("") == true)
         {
             isAllOk = false;
             etpassword.setError("Wrong Password");
         }
+
         if (repassword.length() ==password.length() || repassword.contains(password) == true)
         {
             isAllOk=false;
@@ -71,11 +73,14 @@ public class SingUpActivity extends AppCompatActivity
             isAllOk=false;
             etPhone.setError("Wrong Phone");
         }
-        if (isAllOk) {
+        if (isAllOk)
+        {
+            Toast.makeText(this, "All Ok`", Toast.LENGTH_SHORT).show();
             AppDatabase db=AppDatabase.getDB(getApplicationContext());
             MyUserQuery userQuery=db.getMyUserQuery();
+
             if (userQuery.checkEmail(email)!=null)
-            {
+           {
                 etEmail.setError("found email");
             }
             else  {
