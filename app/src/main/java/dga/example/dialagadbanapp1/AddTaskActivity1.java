@@ -74,6 +74,8 @@ public class AddTaskActivity1 extends AppCompatActivity {
     private void checkAndSaveTask()
     {
         boolean isAllOk = true;
+        String subjText=etText.getText().toString();
+
         if (isAllOk)
         {
             AppDatabase db=AppDatabase.getDB(getApplicationContext());
@@ -88,7 +90,8 @@ public class AddTaskActivity1 extends AppCompatActivity {
             MySubject subject=subjectQuery1.checkSubject(subjText);
             //
             MyTask task=new MyTask();
-            task.importance=importance;
+            task.importance= task.importance;
+            task.shortTitle=
 
         }
     }

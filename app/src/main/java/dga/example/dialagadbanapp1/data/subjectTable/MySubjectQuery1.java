@@ -7,6 +7,8 @@ import androidx.room.Update;
 
 import java.util.List;
 
+import dga.example.dialagadbanapp1.data.usersTable.MyUser;
+
 
 /**
  * واجهه تحوي عمليات /دوال/استعمالات على قاعدة البايانات
@@ -31,6 +33,11 @@ public interface MySubjectQuery1 {
 
     @Update
     void update(MySubject... values);
+
+   @Query("SELECT*FROM MySubject WHERE title=:checkSubject")
+    MySubject checkSubject(String checkSubject);
+
+
 }
 
 
