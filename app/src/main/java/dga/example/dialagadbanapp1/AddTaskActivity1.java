@@ -73,8 +73,16 @@ public class AddTaskActivity1 extends AppCompatActivity {
     }
     private void checkAndSaveTask()
     {
-        boolean isAllOk = true;
         String subjText=etText.getText().toString();
+        String shortTitle=etShortTitle.getText().toString();
+        String autoSubj=autoEtSubj.getText().toString();
+        String tvlmportance1=tvlmportance.getText().toString();
+        int importance=skbrlmportance.getProgress();
+        boolean isAllOk = true;
+        if (shortTitle.length()==0) {
+            isAllOk = false;
+            etShortTitle.setError("ShortTitle Not Found");
+        }
 
         if (isAllOk)
         {
@@ -90,8 +98,12 @@ public class AddTaskActivity1 extends AppCompatActivity {
             MySubject subject=subjectQuery1.checkSubject(subjText);
             //
             MyTask task=new MyTask();
-            task.importance= task.importance;
-            task.shortTitle=
+            task.importance= importance;
+            task.shortTitle=shortTitle;
+            task.text=subjText;
+            task.subjId=subject.key_id();
+
+
 
         }
     }

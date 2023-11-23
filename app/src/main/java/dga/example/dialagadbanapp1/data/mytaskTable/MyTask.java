@@ -35,6 +35,7 @@ MyTask
     public long time ;
     /** هل تمت المهمه؟*/
     public boolean isCompleted;
+    public String shortTitle;
 
     @Override
     public String toString() {
