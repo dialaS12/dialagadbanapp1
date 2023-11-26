@@ -41,28 +41,28 @@ public class splash_screen extends AppCompatActivity
         setContentView(R.layout.splash_screen);
         Log.d("fi","on create");
         Toast.makeText(this, "on create", Toast.LENGTH_SHORT).show();
-        //1 - بناء قاعدة بيانات وارجاع موشر عبليها
-        AppDatabase db =AppDatabase.getDB(getApplicationContext());
-        //2 - مؤشر لكائن عمليات الجدول
-        MySubjectQuery1 subjectQuery = db.getMySubjectQuery();
-        // مثال لاستعمال جدول البيانات
-        // 3- بناء كائن من نوع جدول وتحديد قيم الصفات
-        MySubject s1=new MySubject();
-        s1.title="computer";
-        MySubject s2=new MySubject();
-        s2.title="math";
-        //4- اضافة كائن للجدول.
-        subjectQuery.insert(s1);
-        subjectQuery.insert(s2);
-        //فحص هل تم حفظ ما سبق -5
-        // استخراج وطباعة جميع معطيات جدول المواضيع
-        List<MySubject> all = subjectQuery.getAll();
-        for (MySubject s:all)
-              {
-                  Log.d("SM",s.title);
-                  Toast.makeText(this,s.title,Toast.LENGTH_LONG);
-
-        }
+//        //1 - بناء قاعدة بيانات وارجاع موشر عبليها
+//        AppDatabase db =AppDatabase.getDB(getApplicationContext());
+//        //2 - مؤشر لكائن عمليات الجدول
+//        MySubjectQuery1 subjectQuery = db.getMySubjectQuery();
+//        // مثال لاستعمال جدول البيانات
+//        // 3- بناء كائن من نوع جدول وتحديد قيم الصفات
+//        MySubject s1=new MySubject();
+//        s1.title="computer";
+//        MySubject s2=new MySubject();
+//        s2.title="math";
+//        //4- اضافة كائن للجدول.
+//        subjectQuery.insert(s1);
+//        subjectQuery.insert(s2);
+//        //فحص هل تم حفظ ما سبق -5
+//        // استخراج وطباعة جميع معطيات جدول المواضيع
+//        List<MySubject> all = subjectQuery.getAll();
+//        for (MySubject s:all)
+//              {
+//                  Log.d("SM",s.title);
+//                  Toast.makeText(this,s.title,Toast.LENGTH_LONG);
+//
+//        }
         Handler h=new Handler();
         Runnable r=new Runnable() {
             @Override

@@ -3,6 +3,7 @@ package dga.example.dialagadbanapp1;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -130,11 +131,24 @@ public class AddTaskActivity1 extends AppCompatActivity {
         }
         if (item.getItemId()==R.id.itemSignOut)
         {
-            Toast.makeText(this, "SignOut", Toast.LENGTH_SHORT).show();
+            Intent i = new Intent(AddTaskActivity1.this,SignInMainActivity2.class);
+            startActivity(i);
 
         }
         return true;
     }
+
+    /**
+     * داله مساعدة لفنح قائمة تتلقى بارمتر للكائن الذي سبب فتح القائمة
+     * @param v
+     */
+   // public void showMenu(View v)
+   // {
+        // بناء قائمة popup menu
+       // popupMenu popup=new
+
+   // }
+
 }
 
 

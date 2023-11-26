@@ -51,24 +51,24 @@ public class SingUpActivity extends AppCompatActivity
         String phone=etPhone.getText().toString();
 
 
-        if (email.length() < 6 || email.contains("@") == false) ;
+        if (email.length() < 6 || email.contains("@") == false)
         {
             isAllOk = false;
             etEmail.setError("Wrong Email");
         }
-        if (password.length() < 8 || password.contains("") == true)
+        if (password.length() < 8 || password.contains(" ") == true)
         {
             isAllOk = false;
             etpassword.setError("Wrong Password");
         }
 
-        if (repassword.length() ==password.length() || repassword.contains(password) == true)
+        if (repassword.length() !=password.length() || repassword.equals(password) == false)
         {
             isAllOk=false;
             etRePassword.setError("Wrong RePassword");
         }
 
-        if (phone.length()<10||phone.length()>10||phone.length()!=10||phone.contains("")==true)
+        if (phone.length()<10||phone.length()>10||phone.length()!=10||phone.contains(" ")==true)
         {
             isAllOk=false;
             etPhone.setError("Wrong Phone");
