@@ -1,14 +1,18 @@
 package dga.example.dialagadbanapp1;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -40,7 +44,7 @@ public class AddTaskActivity1 extends AppCompatActivity {
         skbrlmportance = findViewById(R.id.skbrlmportance);
         etShortTitle = findViewById(R.id.etShortTitle);
         etText = findViewById(R.id.etText);
-        autoEtSubj=findViewById(R.id.autoEtSubj);
+        autoEtSubj = findViewById(R.id.autoEtSubj);
         initAutoEtSubject();
 
     }
@@ -71,43 +75,66 @@ public class AddTaskActivity1 extends AppCompatActivity {
 
         });
     }
-    private void checkAndSaveTask()
-    {
-        String subjText=etText.getText().toString();
-        String shortTitle=etShortTitle.getText().toString();
-        String autoSubj=autoEtSubj.getText().toString();
-        String tvlmportance1=tvlmportance.getText().toString();
-        int importance=skbrlmportance.getProgress();
+
+    private void checkAndSaveTask() {
+        String subjText = etText.getText().toString();
+        String shortTitle = etShortTitle.getText().toString();
+        String autoSubj = autoEtSubj.getText().toString();
+        String tvlmportance1 = tvlmportance.getText().toString();
+        int importance = skbrlmportance.getProgress();
         boolean isAllOk = true;
-        if (shortTitle.length()==0) {
+        if (shortTitle.length() == 0) {
             isAllOk = false;
             etShortTitle.setError("ShortTitle Not Found");
         }
 
-        if (isAllOk)
-        {
-            AppDatabase db=AppDatabase.getDB(getApplicationContext());
-            MySubjectQuery1 subjectQuery1=db.getMySubjectQuery();
-            if (subjectQuery1.checkSubject(subjText)==null)//
+        if (isAllOk) {
+            AppDatabase db = AppDatabase.getDB(getApplicationContext());
+            MySubjectQuery1 subjectQuery1 = db.getMySubjectQuery();
+            if (subjectQuery1.checkSubject(subjText) == null)//
             {
-                MySubject subject=new MySubject();
-                subject.title=subjText;
+                MySubject subject = new MySubject();
+                subject.title = subjText;
                 subjectQuery1.insert(subject);
             }
             //
-            MySubject subject=subjectQuery1.checkSubject(subjText);
+            MySubject subject = subjectQuery1.checkSubject(subjText);
             //
-            MyTask task=new MyTask();
-            task.importance= importance;
-            task.shortTitle=shortTitle;
-            task.text=subjText;
-            task.subjId=subject.key_id();
-
-
+            MyTask task = new MyTask();
+            task.importance = importance;
+            task.shortTitle = shortTitle;
+            task.text = subjText;
+            task.subjId = subject.key_id;
+            db.getMyTaskQuery().insertAll(task);
+            finish();
 
         }
-    }
+
 
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+            return true;
+
+        }
+
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        if (item.getItemId()==R.id.itemSettings)
+        {
+            Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show();
+        }
+        if (item.getItemId()==R.id.itemSignOut)
+        {
+            Toast.makeText(this, "SignOut", Toast.LENGTH_SHORT).show();
+
+        }
+        return true;
+    }
+}
 
 

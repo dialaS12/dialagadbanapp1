@@ -17,4 +17,8 @@ public class MySubject
                 ", fullName='" + title + '\'' +
                 '}';
     }
+
+    public long getKey_id() {
+        return key_id;
+    }
 }
