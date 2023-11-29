@@ -7,7 +7,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 import dga.example.dialagadbanapp1.data.mytaskTable.MyTask;
-import dga.example.dialagadbanapp1.data.mytaskTable.myTaskQuery1;
+import dga.example.dialagadbanapp1.data.mytaskTable.MyTaskQuery1;
 import dga.example.dialagadbanapp1.data.subjectTable.MySubject;
 import dga.example.dialagadbanapp1.data.subjectTable.MySubjectQuery1;
 import dga.example.dialagadbanapp1.data.usersTable.MyUser;
@@ -46,7 +46,7 @@ public abstract class AppDatabase extends RoomDatabase {
      *  يعيد كتئن لعمليات جدول المهمات
      * @return
      */
-    public abstract myTaskQuery1 getMyTaskQuery();
+    public abstract MyTaskQuery1 getMyTaskQuery();
 
     /**
      * بناء قاعدة البيانات واعادة كائن يؤشر عليها
