@@ -31,6 +31,9 @@ public interface MySubjectQuery1 {
 
     @Update
     void update(MySubject... values);
+    @Query("SELECT * FROM MySubject WHERE title=:checkSubject")
+    MySubject checkSubject(String checkSubject);
+
 }
 
 

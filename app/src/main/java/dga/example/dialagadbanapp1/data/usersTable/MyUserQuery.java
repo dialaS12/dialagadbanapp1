@@ -37,6 +37,8 @@ public interface MyUserQuery
         void insert(MyUser myUser);
         @Update
         void update(MyUser...values);
+        @Query("SELECT * FROM MyUser WHERE email = :myEmail ")
+        MyUser checkEmail(String myEmail);
 
 
 

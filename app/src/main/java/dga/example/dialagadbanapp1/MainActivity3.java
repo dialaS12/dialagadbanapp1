@@ -2,8 +2,10 @@ package dga.example.dialagadbanapp1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -33,7 +35,10 @@ public class MainActivity3 extends AppCompatActivity {
         fabAdd= (FloatingActionButton) findViewById(R.id.fabAdd);
         fabAdd.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                Intent i= new Intent(MainActivity3.this, AddTaskActivity1.class);
+                startActivity(i);
 
             }
         });
@@ -68,40 +73,64 @@ public class MainActivity3 extends AppCompatActivity {
         }
 
         spnrSubject.setAdapter(SubjectAdapter);//ربط السبنر بالوسيط
+        spnrSubject.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                // استخراج الموضوع حسب رقمه الترتيبي i
+                String item = SubjectAdapter.getItem(i);
+                if (item.equals("ALL"))//هذا يعني اعترض جميع المهام
+                {
+                    initAllListView();
+                } else {
+                    //استخراج كائن الموضوع الذي اخترناه لاسنخراج رقمه id
+                    MySubject subject = subjectQuery.checkSubject(item);
+                    //استدعاء العملية التي تجهز القائمة حسب رقم الموضوع
+                    initListViewBySubjId(subject.key_id);
 
-    }
-    private void initAllListView()
-    {
 
-        AppDatabase db=AppDatabase.getDB(getApplicationContext());// قاعدة بناء
+                }
+            }
 
-        MyTaskQuery1 taskQuery1=db.getMyTaskQuery();
-        List<MyTask> allTasks=taskQuery1.getAllTasks();
-        ArrayAdapter <MyTask>TaskAdapter=new ArrayAdapter<MyTask>(getApplicationContext(), android.R.layout.simple_dropdown_item_1line);
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
 
-        TaskAdapter.addAll(allTasks);
-        istvTasks.setAdapter(TaskAdapter);
-
-    }
-    /**
-     * تجهيز قا~مة المهمات حسب رقم الموضوع
-     * رقم الموضوع param key_id
-     */
-    private void initListViewBySubjId(long key_id)
-    {
-        AppDatabase db=AppDatabase.getDB(getApplicationContext());
-        MyTaskQuery1 taskQuery1=db.getMyTaskQuery();
-        // يجب اضافة عملية تعيد جميع المهمات حسب رقم الموضوغ
-        List<MyTask>allTasks=taskQuery1.getTasksBySubjId(key_id);
-        ArrayAdapter <MyTask>TaskAdapter=new ArrayAdapter<MyTask>(this, android.R.layout.simple_list_item_1);
-        TaskAdapter.addAll(allTasks);
-        istvTasks.setAdapter(TaskAdapter);
-
-    }
-
+            }
+        });
     }
 
 
+            private void initAllListView() {
+
+                AppDatabase db = AppDatabase.getDB(getApplicationContext());// قاعدة بناء
+
+                MyTaskQuery1 taskQuery1 = db.getMyTaskQuery();
+                List<MyTask> allTasks = taskQuery1.getAllTasks();
+                ArrayAdapter<MyTask> TaskAdapter = new ArrayAdapter<MyTask>(getApplicationContext(), android.R.layout.simple_dropdown_item_1line);
+
+                TaskAdapter.addAll(allTasks);
+                istvTasks.setAdapter(TaskAdapter);
+
+            }
+
+            /**
+             * تجهيز قا~مة المهمات حسب رقم الموضوع
+             * رقم الموضوع param key_id
+             */
+            private void initListViewBySubjId(long key_id) {
+                AppDatabase db = AppDatabase.getDB(getApplicationContext());
+                MyTaskQuery1 taskQuery1 = db.getMyTaskQuery();
+                // يجب اضافة عملية تعيد جميع المهمات حسب رقم الموضوغ
+                List<MyTask> allTasks = taskQuery1.getTasksBySubjId(key_id);
+                ArrayAdapter<MyTask> TaskAdapter = new ArrayAdapter<MyTask>(this, android.R.layout.simple_list_item_1);
+                TaskAdapter.addAll(allTasks);
+                istvTasks.setAdapter(TaskAdapter);
+
+            }
 
 
-//..
+        }
+
+
+
+
+

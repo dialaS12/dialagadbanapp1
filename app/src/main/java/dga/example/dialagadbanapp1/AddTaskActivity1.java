@@ -45,7 +45,7 @@ public class AddTaskActivity1 extends AppCompatActivity {
         skbrlmportance = findViewById(R.id.skbrlmportance);
         etShortTitle = findViewById(R.id.etShortTitle);
         etText = findViewById(R.id.etText);
-        autoEtSubj = findViewById(R.id.autoEtSubj);
+        autoEtSubj =findViewById(R.id.autoEtSubj);
         initAutoEtSubject();
 
     }
