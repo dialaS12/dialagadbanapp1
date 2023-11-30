@@ -24,7 +24,7 @@ public class MainActivity3 extends AppCompatActivity {
         //spnr5تحديد المعطيات للوسيط
         adapter.addAll(ar);
         //spnr6ربط الكائن المرئي بالوسيط
-        spnrSubject.setAdapter(adapter);
+        spnrSubject.setAdapter(adapter);//mjklkjllkjlk
     }
 
     }
