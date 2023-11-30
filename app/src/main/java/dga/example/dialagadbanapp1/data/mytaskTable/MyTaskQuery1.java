@@ -8,7 +8,7 @@ import androidx.room.Update;
 
 import java.util.List;
 @Dao
-public interface myTaskQuery1 {
+public interface MyTaskQuery1 {
     /**
      * *اعادة جميع معطيات جدول المهمات
      *
@@ -35,6 +35,7 @@ public interface myTaskQuery1 {
      */
     @Query("SELECT * FROM  MyTask WHERE userId=:useri_p AND isCompleted=:iscomplte_p ORDER BY importance DESC")
     List<MyTask> getAllTaskOrderBy(Long useri_p, boolean iscomplte_p);
+
 
     /**
      * ادخال مهمات
@@ -65,6 +66,9 @@ public interface myTaskQuery1 {
 
     @Query("DELETE FROM MYTASK WHERE keyid=:id")
     void deletelTask(Long id);
+    @Query("SELECT * FROM MyTask WHERE subjId=:key_id ")
+    List<MyTask> getTasksBySubjId(long key_id);
+
 }
 
 
