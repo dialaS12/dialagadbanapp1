@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.PopupMenu;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -138,16 +139,7 @@ public class AddTaskActivity1 extends AppCompatActivity {
         return true;
     }
 
-    /**
-     * داله مساعدة لفنح قائمة تتلقى بارمتر للكائن الذي سبب فتح القائمة
-     * @param v
-     */
-   // public void showMenu(View v)
-   // {
-        // بناء قائمة popup menu
-       // popupMenu popup=new
 
-   // }
 
 }
 

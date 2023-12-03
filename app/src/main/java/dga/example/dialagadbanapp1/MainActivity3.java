@@ -4,11 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.PopupMenu;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
@@ -126,9 +129,59 @@ public class MainActivity3 extends AppCompatActivity {
                 istvTasks.setAdapter(TaskAdapter);
 
             }
+    /**
+     * داله مساعدة لفنح قائمة تتلقى بارمتر للكائن الذي سبب فتح القائمة
+     * @param v
+     */
+    public void showPopUpMenu(View v) {
+        // بناء قائمة popup menu
+        PopupMenu popup = new PopupMenu(this, v);//visilel|
+        popup.inflate (R.menu.main_menu);//  main_menuما زبط معي غير
+        popup.show();
+
+    }
+    public  void onClick(View v)
+    {
+        showPopUpMenu(v);
+    }
+
+    /**
+     * داله مساعدة لفتح قائمة تتلقى بارمتر للكائن الذي سبب فتح القائمة
+     * @param v
+     * @param item
+     */
+    public void showPopUpMenu(View v,MyTask item)
+    {
+        //بناء القائمة popup menu
+        PopupMenu popup=new PopupMenu(this,v);//لكائن الذي سبب فتح القائمة v
+        //
+        popup.inflate(R.menu.main_menu);//!!!
+        //
+        popup.setOnMenuItemClickListener(new pupupMenu.OnMenuItemClickListener);
+    }
+    public boolean onMenultemClick(MenuItem menultem)
+    {
+        if (menultem.getItemId()==R.id.mnAddTask)
+        {
+            Toast.makeText(MainActivity3.this,"Add",Toast.LENGTH_SHORT).show();
+            Intent i=new Intent(MainActivity3.this,AddTaskActivity1.class);
+            startActivity(i);
+
+            if(menultem.getItemId()==R.id.mnDelete) {
+                Toast.makeText(MainActivity3.this, "Delete", Toast.LENGTH_SHORT).show();
+
+                if (menultem.getItemId() == R.id.mnEdit) {
+                    Toast.makeText(MainActivity.this, "Edit", Toast.LENGTH_SHORT).show();
+                    return true;
+                }
+            });
+            popup.show;
 
 
-        }
+
+
+
+            }
 
 
 
