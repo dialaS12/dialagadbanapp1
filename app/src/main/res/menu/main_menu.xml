@@ -8,7 +8,7 @@
         android:id="@+id/itemSignOut"
         android:title="SignOut" />
     <item
-        android:id="@+id/itemHistory"
+        android:id="@+id/itemAddTask"
         android:icon="@android:drawable/ic_menu_recent_history"
         android:title="History"
         app:showAsAction="always|withText" />

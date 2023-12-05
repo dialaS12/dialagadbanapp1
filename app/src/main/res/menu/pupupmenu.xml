@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/mnAddTask"
+        android:id="@+id/mnComplete"
         android:title="Item" />
     <item
         android:id="@+id/mnDelete"
