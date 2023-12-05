@@ -1,8 +1,10 @@
 package dga.example.dialagadbanapp1;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -209,6 +211,37 @@ public class MainActivity3 extends AppCompatActivity {
             Intent i = new Intent(MainActivity3.this, AddTaskActivity1.class);
             startActivity(i);
         }
+        return true;
+        }
+
+    /**
+     * بناء ديالوج
+     */
+    public void showYesNoDialog()
+        {
+            //جهيز بناء شباك حوار "دايلوغ"يتلقى برامتر مؤشر للنشاط(اكتيففتي)الحالي
+            AlertDialog.Builder builder=new AlertDialog.Builder(this);
+            builder.setTitle("Log Out");//تحديد العوان
+            builder.setMessage("Are You Sure?");//تحديد فحوى شباك الحوار
+            //الضغط على الزر ومعالج الحدث
+            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    //معالجة حدث للموافقه
+                    Toast.makeText(MainActivity3.this, "Signing Out", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+            });
+            //الضغط على الزر ومعالج الحدث
+            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    //معالجة حدث للموافقه
+                    Toast.makeText(MainActivity3.this, "Signing Out", Toast.LENGTH_SHORT).show();
+                }
+            });
+            AlertDialog dialog=builder.create();//بناء شباك الحوار -دايالوج
+            dialog.show();//عرض الشباك
         }
 
 
@@ -217,8 +250,9 @@ public class MainActivity3 extends AppCompatActivity {
 
 
 
+
     }
-}
+
 
 
 
