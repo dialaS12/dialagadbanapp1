@@ -136,7 +136,7 @@ public class MainActivity3 extends AppCompatActivity {
     public void showPopUpMenu(View v) {
         // بناء قائمة popup menu
         PopupMenu popup = new PopupMenu(this, v);//visilel|
-        popup.inflate (R.menu.main_menu);//  main_menuما زبط معي غير
+        popup.inflate (R.menu.pupupmenu);
         popup.show();
 
     }
@@ -155,9 +155,15 @@ public class MainActivity3 extends AppCompatActivity {
         //بناء القائمة popup menu
         PopupMenu popup=new PopupMenu(this,v);//لكائن الذي سبب فتح القائمة v
         //
-        popup.inflate(R.menu.main_menu);//!!!
+        popup.inflate(R.menu.pupupmenu);
         //
-        popup.setOnMenuItemClickListener(new pupupMenu.OnMenuItemClickListener);
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+
+                return true;
+            }
+        });
     }
     public boolean onMenultemClick(MenuItem menultem)
     {
