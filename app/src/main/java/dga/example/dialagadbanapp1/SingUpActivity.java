@@ -38,6 +38,7 @@ public class SingUpActivity extends AppCompatActivity
 
     }
     public void onClickSave(View v)
+
     {
         checkEPRP();
     }
@@ -95,6 +96,7 @@ public class SingUpActivity extends AppCompatActivity
 
 
             }
+
 
         }
 

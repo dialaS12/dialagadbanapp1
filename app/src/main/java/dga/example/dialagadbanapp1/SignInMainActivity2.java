@@ -12,6 +12,11 @@ import android.widget.Toast;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import dga.example.dialagadbanapp1.data.AppDatabase;
+import dga.example.dialagadbanapp1.data.usersTable.MyUser;
+import dga.example.dialagadbanapp1.data.usersTable.MyUserQuery;
+import dga.example.dialagadbanapp1.data.usersTable.MyUserQuery_Impl;
+
 public class SignInMainActivity2 extends AppCompatActivity {
     private TextInputEditText etEmail;
     private TextInputEditText etpassword;
@@ -20,56 +25,66 @@ public class SignInMainActivity2 extends AppCompatActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in_main2);
 
-        etEmail= (TextInputEditText) findViewById(R.id.etEmail);
-        etpassword= (TextInputEditText) findViewById(R.id.etPassword);
-        btnSingin= (Button) findViewById(R.id.btnSingin);
-        btnSingup= (Button) findViewById(R.id.btnSingup);
+        etEmail = (TextInputEditText) findViewById(R.id.etEmail);
+        etpassword = (TextInputEditText) findViewById(R.id.etPassword);
+        btnSingin = (Button) findViewById(R.id.btnSingin);
+        btnSingup = (Button) findViewById(R.id.btnSingup);
 
     }
-    public void onClickSingUp(View v)
-    {
+
+    public void onClickSingUp(View v) {
         //to open new activity from current to next
-        Intent i= new Intent(SignInMainActivity2.this, SingUpActivity.class);
+        Intent i = new Intent(SignInMainActivity2.this, SingUpActivity.class);
         startActivity(i);
-        //to close current activity
-       finish();
+
     }
-    public void onClickSingincheck(View v)
-    {
+
+    public void onClickSingincheck(View v) {
         checkEmailPassw();
     }
-    public void checkEmailPassw()
-    {
-        boolean isAllOk=true;
-        String email=etEmail.getText().toString();
-        String password=etpassword.getText().toString();
-        if (email.length()<6 ||email.contains("@")==false);
+
+    public void checkEmailPassw() {
+        boolean isAllOk = true;
+        String email = etEmail.getText().toString();
+        String password = etpassword.getText().toString();
+        if (email.length() < 6 || email.contains("@") == false)
         {
-            isAllOk=false;
+            isAllOk = false;
             etEmail.setError("Wrong Email");
         }
-        if (password.length()<8||password.contains("")==true);
+        if (password.length() < 8 || password.contains(" ") == true)
         {
-            isAllOk=false;
+            isAllOk = false;
             etpassword.setError("Wrong Password");
         }
-        if (isAllOk)
-        {
-            Toast.makeText(this,"All Ok",Toast.LENGTH_SHORT).show();
+        if (isAllOk) {
+            Toast.makeText(this, "All Ok", Toast.LENGTH_SHORT).show();
+            //بناء قاعدة البيانات وارجاع مؤشر عليها
+            AppDatabase db = AppDatabase.getDB(getApplicationContext());
+            // مؤشر لكائن عمليات الجدول
+            MyUserQuery userQuery = db.getMyUserQuery();
+            // ان لم يكن موجود ,استعداء العملية التي تنفذ الاستعلام الذي يفحص البريد وكلمه المرور ويعيد كائنا ان كان موجودا او لا
+            MyUser myUser = userQuery.checkEmailPassw(email, password);
+            if (myUser == null) {
+                Toast.makeText(this, "Wrong Email Or Password`", Toast.LENGTH_LONG).show();
+
+
+            } else {
+
+                //ان كان هناالك حساب الايمل والباسورد ننتقل الى شاشه الرئيسيه
+                Intent i = new Intent(SignInMainActivity2.this, MainActivity3.class);
+                startActivity(i);
+                finish();
+
+
+            }
+
         }
 
+
     }
-
-
-
-
-
-
-
-
 }

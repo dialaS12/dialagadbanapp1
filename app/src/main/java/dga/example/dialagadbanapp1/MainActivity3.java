@@ -33,7 +33,10 @@ public class MainActivity3 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
-        istvTasks= (ListView) findViewById(R.id.istvTasks);
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main3);
+
+        istvTasks=  findViewById(R.id.istvTasks);
         spnrSubject= (Spinner) findViewById(R.id.spnrSubject);
         fabAdd= (FloatingActionButton) findViewById(R.id.fabAdd);
         fabAdd.setOnClickListener(new View.OnClickListener() {
@@ -45,8 +48,7 @@ public class MainActivity3 extends AppCompatActivity {
 
             }
         });
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main3);
+
         //spnr2 وضع مؤشر الصفه على الكائن المرئي الموجود بواجهه المستعمل
         spnrSubject=findViewById(R.id.spnrSubject);
         //spnr3 بناء الوسيط وتحديد واجهه تنسيق لمعطى واحد
@@ -161,33 +163,32 @@ public class MainActivity3 extends AppCompatActivity {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
 
+                if (menuItem.getItemId() == R.id.mnAddTask) {
+                    Toast.makeText(MainActivity3.this, "Add", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(MainActivity3.this, AddTaskActivity1.class);
+                    startActivity(i);
+                }
+                if (menuItem.getItemId() == R.id.mnDelete) {
+                    Toast.makeText(MainActivity3.this, "Delete", Toast.LENGTH_SHORT).show();
+                }
+                if (menuItem.getItemId() == R.id.mnEdit) {
+                    Toast.makeText(MainActivity3.this, "Edit", Toast.LENGTH_SHORT).show();
+
+                }
                 return true;
             }
+
+
+
+
         });
+        popup.show();
     }
-    public boolean onMenultemClick(MenuItem menultem)
-    {
-        if (menultem.getItemId()==R.id.mnAddTask)
-        {
-            Toast.makeText(MainActivity3.this,"Add",Toast.LENGTH_SHORT).show();
-            Intent i=new Intent(MainActivity3.this,AddTaskActivity1.class);
-            startActivity(i);
-
-            if(menultem.getItemId()==R.id.mnDelete) {
-                Toast.makeText(MainActivity3.this, "Delete", Toast.LENGTH_SHORT).show();
-
-                if (menultem.getItemId() == R.id.mnEdit) {
-                    Toast.makeText(MainActivity.this, "Edit", Toast.LENGTH_SHORT).show();
-                    return true;
-                }
-            });
-            popup.show;
+   // public boolean onMenultemClick(MenuItem menultem)
+   {
 
 
-
-
-
-            }
+   }}
 
 
 
