@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -96,14 +98,21 @@ public class MainActivity3 extends AppCompatActivity {
                 }
             }
 
+
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
         });
+
     }
 
-
+    @Override//داله لكب يبين التلت نقاط في الشاشه
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        getMenuInflater().inflate(R.menu.main_menu,menu);
+        return true;
+    }
     private void initAllListView() {
 
         AppDatabase db = AppDatabase.getDB(getApplicationContext());// قاعدة بناء
@@ -117,7 +126,7 @@ public class MainActivity3 extends AppCompatActivity {
         istvTasks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                showPopUpMenu(view, TaskAdapter.getItem(i));//!!
+                showMenu(view,TaskAdapter.getItem(i));
             }
         });
 
@@ -161,7 +170,7 @@ public class MainActivity3 extends AppCompatActivity {
      * @param v
      * @param item
      */
-    public void showPopUpMenu(View v, MyTask item) {
+    public void showMenu(View v, MyTask item) {
         //بناء القائمة popup menu
         PopupMenu popup = new PopupMenu(this, v);//لكائن الذي سبب فتح القائمة v
         //
@@ -195,24 +204,67 @@ public class MainActivity3 extends AppCompatActivity {
     {
         if (item.getItemId()==R.id.itemSettings)
         {
-            Toast.makeText(this, "All Ok", Toast.LENGTH_SHORT).show();
-            //to open new activity from current to next activity
-            Intent i = new Intent(MainActivity3.this, AddTaskActivity1.class);
-            startActivity(i);
+            Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show();
+
         }
         if (item.getItemId()==R.id.itemSignOut) {
-            Toast.makeText(this, "All Ok", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "SignOut", Toast.LENGTH_SHORT).show();
+            showYesNoDialog();
 
         }
         if (item.getItemId()==R.id.itemAddTask)
         {
-            Toast.makeText(this, "All Ok", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Add", Toast.LENGTH_SHORT).show();
             //to open new activity from current to next activity
             Intent i = new Intent(MainActivity3.this, AddTaskActivity1.class);
             startActivity(i);
         }
         return true;
         }
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d("HA","onRestart");
+        Toast.makeText(this, "onRestart", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d("HA","onStart");
+        Toast.makeText(this, "onCreate", Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("HA","onResume");
+        Toast.makeText(this, "onResume", Toast.LENGTH_SHORT).show();
+        initSubjectSpnr();
+        initAllListView();
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d("HA","onPause");
+        Toast.makeText(this, "onPause", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d("HA","onDestroy");
+        Toast.makeText(this, "onDestroy", Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d("HA","onStop");
+        Toast.makeText(this, "onStop", Toast.LENGTH_SHORT).show();
+    }
 
     /**
      * بناء ديالوج

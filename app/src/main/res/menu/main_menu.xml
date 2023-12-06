@@ -8,8 +8,11 @@
         android:id="@+id/itemSignOut"
         android:title="SignOut" />
     <item
-        android:id="@+id/itemAddTask"
+        android:id="@+id/itmHistory"
         android:icon="@android:drawable/ic_menu_recent_history"
         android:title="History"
         app:showAsAction="always|withText" />
+    <item
+        android:id="@+id/itemAddTask"
+        android:title="AddTask" />
 </menu>
