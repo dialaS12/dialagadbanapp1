@@ -138,6 +138,17 @@ public class AddTaskActivity1 extends AppCompatActivity {
         }
         return true;
     }
+    public void onClickSave(View v) {
+        checkAndSaveTask();
+        Intent i = new Intent(AddTaskActivity1.this, MainActivity3.class);
+        startActivity(i);
+
+    }
+    public void onClickCancel(View v) {
+
+       finish();
+
+    }
 
 
 
