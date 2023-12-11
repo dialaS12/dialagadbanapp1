@@ -2,10 +2,10 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/itemSettings"
+        android:id="@+id/itmSettings"
         android:title="Settings" />
     <item
-        android:id="@+id/itemSignOut"
+        android:id="@+id/itmSignOut"
         android:title="SignOut" />
     <item
         android:id="@+id/itmHistory"

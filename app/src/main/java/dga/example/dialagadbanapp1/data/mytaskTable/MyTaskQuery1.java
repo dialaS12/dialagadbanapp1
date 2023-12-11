@@ -66,8 +66,10 @@ public interface MyTaskQuery1 {
 
     @Query("DELETE FROM MYTASK WHERE keyid=:id")
     void deletelTask(Long id);
+    //عملية تعيد جميع المهمات حسب رقم الموضوغ
     @Query("SELECT * FROM MyTask WHERE subjId=:key_id ")
     List<MyTask> getTasksBySubjId(long key_id);
+
 
 }
 

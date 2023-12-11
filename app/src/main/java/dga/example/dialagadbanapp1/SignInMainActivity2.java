@@ -15,7 +15,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import dga.example.dialagadbanapp1.data.AppDatabase;
 import dga.example.dialagadbanapp1.data.usersTable.MyUser;
 import dga.example.dialagadbanapp1.data.usersTable.MyUserQuery;
-import dga.example.dialagadbanapp1.data.usersTable.MyUserQuery_Impl;
+
 
 public class SignInMainActivity2 extends AppCompatActivity {
     private TextInputEditText etEmail;
@@ -48,12 +48,16 @@ public class SignInMainActivity2 extends AppCompatActivity {
     }
 
     public void checkEmailPassw() {
-        boolean isAllOk = true;
-        String email = etEmail.getText().toString();
-        String password = etpassword.getText().toString();
+        boolean isAllOk = true;//يحوي نتيجة فحص الحقول ان كانت سليمه
+        String email = etEmail.getText().toString();//استخراج النص من حقل الايميل
+        String password = etpassword.getText().toString(); //استخراج نص كلمه المرور
+
+        //فحص الايميل ان كان طوله اقل من 6 او لا يحوي @ فهو خطا
         if (email.length() < 6 || email.contains("@") == false)
         {
+            //تعديل المتغير ليدل على ان الفحص يعطي نتيجة خاطئه
             isAllOk = false;
+            //عرض ملاحظة على الشاشة داخل حقل البريد
             etEmail.setError("Wrong Email");
         }
         if (password.length() < 8 || password.contains(" ") == true)
@@ -75,7 +79,7 @@ public class SignInMainActivity2 extends AppCompatActivity {
 
             } else {
 
-                //ان كان هناالك حساب الايمل والباسورد ننتقل الى شاشه الرئيسيه
+                //ان كان هناالك حساب الايمل والبورد ننتقل الى شاشه الرئيسيه
                 Intent i = new Intent(SignInMainActivity2.this, MainActivity3.class);
                 startActivity(i);
                 finish();

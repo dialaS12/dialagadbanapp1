@@ -47,7 +47,7 @@ public class AddTaskActivity1 extends AppCompatActivity {
         etShortTitle = findViewById(R.id.etShortTitle);
         etText = findViewById(R.id.etText);
         autoEtSubj =findViewById(R.id.autoEtSubj);
-        initAutoEtSubject();//داله لاستخراج القيم وعرضها بالحقل السابق+
+        initAutoEtSubject();
 
     }
 
@@ -57,21 +57,21 @@ public class AddTaskActivity1 extends AppCompatActivity {
      * "طريقه التعامل معه شبيه بالسبنر"
      */
     private void initAutoEtSubject() {
-        //مؤشر لقاعدة البينات
+        //مؤشر لقاعدة البيانات
         AppDatabase db = AppDatabase.getDB(getApplicationContext());
-        //مؤشر لواجهه استعملات جدول المواضيع
+        //مؤشر لواجهه استعمالات جدول المواضيع
         MySubjectQuery1 subjectQuery1 = db.getMySubjectQuery();
-        //مصدر المعطيات: اسيتخراج جميع المواضيع من الجدول
+        //مصدر معطيات: استخراج جميع المواضيع من الجدول
         List<MySubject> allSubject = subjectQuery1.getAll();
         //تجهيز الوسيط
         ArrayAdapter<MySubject> adapter = new ArrayAdapter<MySubject>(this, android.R.layout.simple_dropdown_item_1line);
-        adapter.addAll(allSubject);//اضافة جميع معطيات للوسيط
+        adapter.addAll(allSubject);//اضافة جميع المعطيات للوسيط
         autoEtSubj.setAdapter(adapter);//ربط الحقل بالوسيط
-        //معالجة حدث لعرض المواضيع عند الضفط على الحقل
+        //معالجه حدث لعرض المواضيع عند الضغط على الحقل
         autoEtSubj.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                autoEtSubj.showDropDown();
+                autoEtSubj.showDropDown();//لكي عندما يفتح السبنر يبينو لتحت كلهن
 
             }
 
@@ -93,22 +93,22 @@ public class AddTaskActivity1 extends AppCompatActivity {
         if (isAllOk) {
             AppDatabase db = AppDatabase.getDB(getApplicationContext());
             MySubjectQuery1 subjectQuery1 = db.getMySubjectQuery();
-            if (subjectQuery1.checkSubject(subjText) == null)//
-            {
+            if (subjectQuery1.checkSubject(subjText) == null)//فحص هل الموضوع موجود من قبل بالجدول
+            {//بناء موضوع جديد واضافته
                 MySubject subject = new MySubject();
                 subject.title = subjText;
                 subjectQuery1.insert(subject);
             }
-            //
+            // ااستخراج id الموضوع لاننا بحاجة لرقمه التسلسلي
             MySubject subject = subjectQuery1.checkSubject(subjText);
-            //
+            // بناء مهمه جديدة وتحديدة صفاتها
             MyTask task = new MyTask();
             task.importance = importance;
             task.shortTitle = shortTitle;
             task.text = subjText;
-            task.subjId = subject.key_id;
-            db.getMyTaskQuery().insertAll(task);
-            finish();
+            task.subjId = subject.key_id;//تحديد رقم موضوع المهمه
+            db.getMyTaskQuery().insertAll(task);//اضافة المهمه للجدول
+            finish();//اغلاق الشاشة
 
         }
 
@@ -126,28 +126,17 @@ public class AddTaskActivity1 extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-        if (item.getItemId()==R.id.itemSettings)
+        if (item.getItemId()==R.id.itmSettings)
         {
             Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show();
         }
-        if (item.getItemId()==R.id.itemSignOut)
+        if (item.getItemId()==R.id.itmSignOut)
         {
             Intent i = new Intent(AddTaskActivity1.this,SignInMainActivity2.class);
             startActivity(i);
 
         }
         return true;
-    }
-    public void onClickSave(View v) {
-        checkAndSaveTask();
-        Intent i = new Intent(AddTaskActivity1.this, MainActivity3.class);
-        startActivity(i);
-
-    }
-    public void onClickCancel(View v) {
-
-       finish();
-
     }
 
 
