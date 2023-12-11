@@ -79,18 +79,23 @@ public class SingUpActivity extends AppCompatActivity
             Toast.makeText(this, "All Ok`", Toast.LENGTH_SHORT).show();
             AppDatabase db=AppDatabase.getDB(getApplicationContext());
             MyUserQuery userQuery=db.getMyUserQuery();
-
+            //فحص هل الايميل موجود من قبل ان يتم التسجيل من قبل
             if (userQuery.checkEmail(email)!=null)
            {
                 etEmail.setError("found email");
             }
-            else  {
+            else //ان لم يكن الايميل موجودا نقوم ببناء كائن للمستعمل وادخاله في الجدول MyUser للستعملين
+            {
+                //بناء الكائن
                 MyUser myUser=new MyUser();
+                //تحديد قيم الصفات بالقيم التي استخرجناها
                 myUser.fullName=name;
                 myUser.phone=phone;
                 myUser.passw=password;
                 myUser.email=email;
+                //اضافة الكائن الجديد للجدول
                 userQuery.insert((myUser));
+                //اغلاق الشاشة الحالية
                 finish();
 
 
