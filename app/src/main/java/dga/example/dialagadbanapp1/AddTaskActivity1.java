@@ -47,7 +47,7 @@ public class AddTaskActivity1 extends AppCompatActivity {
         etShortTitle = findViewById(R.id.etShortTitle);
         etText = findViewById(R.id.etText);
         autoEtSubj =findViewById(R.id.autoEtSubj);
-        initAutoEtSubject();
+        initAutoEtSubject();//داله لاستخراج القيم وعرضها بالحقل السابق+
 
     }
 
@@ -57,17 +57,17 @@ public class AddTaskActivity1 extends AppCompatActivity {
      * "طريقه التعامل معه شبيه بالسبنر"
      */
     private void initAutoEtSubject() {
-        //
+        //مؤشر لقاعدة البينات
         AppDatabase db = AppDatabase.getDB(getApplicationContext());
-        //
+        //مؤشر لواجهه استعملات جدول المواضيع
         MySubjectQuery1 subjectQuery1 = db.getMySubjectQuery();
-        //
+        //مصدر المعطيات: اسيتخراج جميع المواضيع من الجدول
         List<MySubject> allSubject = subjectQuery1.getAll();
-        //
+        //تجهيز الوسيط
         ArrayAdapter<MySubject> adapter = new ArrayAdapter<MySubject>(this, android.R.layout.simple_dropdown_item_1line);
-        adapter.addAll(allSubject);//
-        autoEtSubj.setAdapter(adapter);//
-        //
+        adapter.addAll(allSubject);//اضافة جميع معطيات للوسيط
+        autoEtSubj.setAdapter(adapter);//ربط الحقل بالوسيط
+        //معالجة حدث لعرض المواضيع عند الضفط على الحقل
         autoEtSubj.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
