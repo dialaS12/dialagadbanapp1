@@ -307,9 +307,9 @@ public class MainActivity3 extends AppCompatActivity {
             AlertDialog dialog=builder.create();//بناء شباك الحوار -دايالوج
             dialog.show();//عرض الشباك
         }
+    //kjkljk
 
 
-3
 
 
 
