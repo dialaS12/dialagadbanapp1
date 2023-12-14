@@ -6,7 +6,7 @@
         android:title="Complete" />
     <item
         android:id="@+id/mnDelete"
-        android:title="Delete" />
+        android:title="mnDelete" />
     <item
         android:id="@+id/mnEdit"
         android:title="Edit" />
