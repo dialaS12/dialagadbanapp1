@@ -34,16 +34,19 @@ public class MainActivity3 extends AppCompatActivity {
     private ListView istvTasks;
     private FloatingActionButton fabAdd;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main3);
+        setContentView(R.layout.activity_main3);//الربط بين فئة الجافا وملف التنسيق
+        //تحديد مؤشر
 
         istvTasks = findViewById(R.id.istvTasks);
         spnrSubject = (Spinner) findViewById(R.id.spnrSubject);
         fabAdd = (FloatingActionButton) findViewById(R.id.fabAdd);
         fabAdd.setOnClickListener(new View.OnClickListener() {
             @Override
+            //داله معالجة الحدث (تتلقلى برامتر من نوع view وتبدا ب public void
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity3.this, AddTaskActivity1.class);
                 startActivity(i);
@@ -65,14 +68,17 @@ public class MainActivity3 extends AppCompatActivity {
 
     }
 
+    /**
+     * عملية تجهيز السبنر بالمواضيع
+     */
+
     private void initSubjectSpnr() {
 
         AppDatabase db = AppDatabase.getDB(getApplicationContext());// قاعدة بناء
         MySubjectQuery1 subjectQuery = db.getMySubjectQuery();//  عمليات جدول المواضيع
-        List<MySubject> allSubjects = subjectQuery.getAll();// استخراج// جميع المواضيع
-        // قاعدة بناء
+        List<MySubject> allSubjects = subjectQuery.getAll();// استخراج جميع المواضيع
+        // تجهيز الوسيط
         ArrayAdapter<String> SubjectAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_dropdown_item_1line);
-
         SubjectAdapter.add("ALL");//ستظهر اولا بالسبنر تعني عرض جميع المهمات
         for (MySubject subject : allSubjects)//  اضافة المواضبع للوسيط
         {
@@ -87,7 +93,7 @@ public class MainActivity3 extends AppCompatActivity {
                 String item = SubjectAdapter.getItem(i);
                 if (item.equals("ALL"))//هذا يعني اعترض جميع المهام
                 {
-                    initAllListView();
+                    initAllListView();//استدعاء الداله التي  تجهيز قائمة جميع المهمهات وعرضها ب list view
                 } else {
                     //استخراج كائن الموضوع الذي اخترناه لاسنخراج رقمه id
                     MySubject subject = subjectQuery.checkSubject(item);
@@ -107,12 +113,16 @@ public class MainActivity3 extends AppCompatActivity {
 
     }
 
-    @Override//داله لكب يبين التلت نقاط في الشاشه
+    @Override//داله لكي يبين التلت نقاط في الشاشه
     public boolean onCreateOptionsMenu(Menu menu)
     {
         getMenuInflater().inflate(R.menu.main_menu,menu);
         return true;
     }
+
+    /**
+     * تجهيز قائمة جميع المهمهات وعرضها ب list view
+     */
     private void initAllListView() {
 
         AppDatabase db = AppDatabase.getDB(getApplicationContext());// قاعدة بناء
@@ -126,9 +136,10 @@ public class MainActivity3 extends AppCompatActivity {
         istvTasks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                showMenu(view,TaskAdapter.getItem(i));
+                showPopUpMenu(view,TaskAdapter.getItem(i));
             }
         });
+
 
     }
 
@@ -152,16 +163,16 @@ public class MainActivity3 extends AppCompatActivity {
      *
      * @param v
      */
-    public void showPopUpMenu(View v) {
+    public void showMenu(View v) {
         // بناء قائمة popup menu
-        PopupMenu popup = new PopupMenu(this, v);//visilel|
-        popup.inflate(R.menu.pupupmenu);
-        popup.show();
+        PopupMenu popup = new PopupMenu(this, v);//الكائن الذي سبب فتح القائمة v
+        popup.inflate(R.menu.pupupmenu);//ملف القائمة
+        popup.show();//فتح وعرض القائمة
 
     }
 
     public void onClick(View v) {
-        showPopUpMenu(v);
+        showMenu(v);
     }
 
     /**
@@ -170,17 +181,18 @@ public class MainActivity3 extends AppCompatActivity {
      * @param v
      * @param item
      */
-    public void showMenu(View v, MyTask item) {
+    public void showPopUpMenu(View v, MyTask item) {
         //بناء القائمة popup menu
         PopupMenu popup = new PopupMenu(this, v);//لكائن الذي سبب فتح القائمة v
-        //
+        //ملف القائمة
         popup.inflate(R.menu.pupupmenu);
-        //
+        //اضافة معالج حدث لاختيار عنصر من القائمة
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
 
                 if (menuItem.getItemId() == R.id.mnComplete) {
+                    //هنا نكتب ردة فعل لاختيار هذا العنصر من القائمة
                     Toast.makeText(MainActivity3.this, "Complete", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(MainActivity3.this, AddTaskActivity1.class);
                     startActivity(i);
@@ -197,17 +209,17 @@ public class MainActivity3 extends AppCompatActivity {
 
 
         });
-        popup.show();
+        popup.show();//فتح وعرض القائمة
     }
 
     public boolean onOptionsItemSelected(@NonNull MenuItem item)
     {
-        if (item.getItemId()==R.id.itemSettings)
+        if (item.getItemId()==R.id.itmSettings)
         {
             Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show();
 
         }
-        if (item.getItemId()==R.id.itemSignOut) {
+        if (item.getItemId()==R.id.itmSignOut) {
             Toast.makeText(this, "SignOut", Toast.LENGTH_SHORT).show();
             showYesNoDialog();
 
@@ -295,7 +307,7 @@ public class MainActivity3 extends AppCompatActivity {
             AlertDialog dialog=builder.create();//بناء شباك الحوار -دايالوج
             dialog.show();//عرض الشباك
         }
-
+    //kjkljk
 
 
 
