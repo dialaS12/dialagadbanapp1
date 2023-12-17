@@ -53,7 +53,7 @@ public class MainActivity3 extends AppCompatActivity {
 
             }
         });
-
+//99
         //spnr2 وضع مؤشر الصفه على الكائن المرئي الموجود بواجهه المستعمل
         spnrSubject = findViewById(R.id.spnrSubject);
         //spnr3 بناء الوسيط وتحديد واجهه تنسيق لمعطى واحد
