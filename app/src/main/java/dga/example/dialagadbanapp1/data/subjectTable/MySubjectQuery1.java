@@ -12,7 +12,8 @@ import java.util.List;
  * واجهه تحوي عمليات /دوال/استعمالات على قاعدة البايانات
  */
 @Dao//لتحديد ان الواجهه تحوي استعلامات على قاعدة بيانات
-public interface MySubjectQuery1 {
+public interface MySubjectQuery1
+{
 
 
     @Query("SELECT * FROM MySubject")
