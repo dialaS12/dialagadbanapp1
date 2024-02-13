@@ -294,6 +294,7 @@ public class MainActivity3 extends AppCompatActivity {
                 public void onClick(DialogInterface dialogInterface, int i) {
                     //معالجة حدث للموافقه
                     FirebaseAuth.getInstance().signOut();//לביצוע רישום יציאה
+
                     Toast.makeText(MainActivity3.this, "Signing Out", Toast.LENGTH_SHORT).show();
                     finish();
 
