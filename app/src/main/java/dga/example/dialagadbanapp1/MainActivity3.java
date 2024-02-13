@@ -19,6 +19,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.List;
 
@@ -292,8 +293,10 @@ public class MainActivity3 extends AppCompatActivity {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     //معالجة حدث للموافقه
+                    FirebaseAuth.getInstance().signOut();//לביצוע רישום יציאה
                     Toast.makeText(MainActivity3.this, "Signing Out", Toast.LENGTH_SHORT).show();
                     finish();
+
                 }
             });
             //الضغط على الزر ومعالج الحدث

@@ -142,7 +142,6 @@ public class SignInMainActivity2 extends AppCompatActivity {
                 }
 
             });
-            FirebaseAuth.getInstance().signOut();//לביצוע רישום יציאה
         }
     }
 
