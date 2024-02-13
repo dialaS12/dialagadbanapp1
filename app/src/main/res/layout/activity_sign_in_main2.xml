@@ -38,7 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:backgroundTint="#009688"
-            android:onClick="onClickSingincheck"
+            android:onClick="onClickSingincheck_FB"
             android:text="SIGN IN" />
 
         <Button
